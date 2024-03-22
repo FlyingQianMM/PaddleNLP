@@ -20,23 +20,30 @@ from datasets import load_dataset
 
 from .base import RawDataset, RawSample
 
-__all__ = ["AlpacaDataset"]
+__all__ = ['AlpacaDataset', 'LocalAlpacaDataset']
 
 
 class AlpacaDataset(RawDataset):
-    NAME: str = "alpaca"
-    ALIASES: tuple[str, ...] = ("stanford-alpaca",)
+    NAME: str = 'alpaca'
+    ALIASES: tuple[str, ...] = ('stanford-alpaca',)
+    PATH: str = "tatsu-lab/alpaca"
 
     def __init__(self, path: str | None = None) -> None:
-        self.data = load_dataset(path or "tatsu-lab/alpaca", split="train")
+        self.data = load_dataset(path or self.PATH, split="train")
 
     def __getitem__(self, index: int) -> RawSample:
         data = self.data[index]
         input = (  # pylint: disable=redefined-builtin
-            " ".join((data["instruction"], data["input"])) if data["input"] else data["instruction"]
+            ' '.join((data['instruction'], data['input'])) if data['input'] else data['instruction']
         )
-        answer = data["output"]
+        answer = data['output']
         return RawSample(input=input, answer=answer)
 
     def __len__(self) -> int:
         return len(self.data)
+
+
+class LocalAlpacaDataset(AlpacaDataset):
+    NAME: str = 'local/alpaca'
+    ALIASES: tuple[str, ...] = ('local/alpaca-cleaned',)
+    PATH: str = '/root/datasets/alpaca-cleaned'

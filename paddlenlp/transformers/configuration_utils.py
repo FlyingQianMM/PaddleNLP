@@ -469,6 +469,7 @@ class PretrainedConfig:
             self.dtype = kwargs.pop("dtype", paddle.get_default_dtype())
 
         # Parameters for tensor parallel
+        self.fp16_opt_level = None
         self.tensor_parallel_degree = kwargs.pop("tensor_parallel_degree", -1)
         self.tensor_parallel_rank = kwargs.pop("tensor_parallel_rank", 0)
         # Parameters for sep

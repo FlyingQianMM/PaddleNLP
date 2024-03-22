@@ -1755,7 +1755,7 @@ class PretrainedModel(Layer, GenerationMixin, ConversionMixin):
                 quantization_linear_list = [".".join([prefix, s]) for s in quantization_linear_list]
 
         # Weight quantization if not yet quantized & update loaded_keys
-        if config.quantization_config.is_weight_quantize():
+        if config and config.quantization_config.is_weight_quantize():
             try:
                 from ..quantization.quantization_utils import (
                     convert_to_quantize_state_dict,
@@ -1870,7 +1870,7 @@ class PretrainedModel(Layer, GenerationMixin, ConversionMixin):
                 ignore_mismatched_sizes,
             )
 
-            if config.quantization_config.is_weight_quantize():
+            if config and config.quantization_config.is_weight_quantize():
                 error_msgs = _load_state_dict_into_meta_model(
                     model_to_load,
                     state_dict,

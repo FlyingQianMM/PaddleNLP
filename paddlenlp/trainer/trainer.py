@@ -179,6 +179,7 @@ except:
     from paddle.fluid.dataloader.dataloader_iter import _DataLoaderIterBase
 
 
+
 __all__ = ["Trainer"]
 
 
@@ -594,6 +595,9 @@ class Trainer:
             elif resume_from_checkpoint is not None:
                 logger.info(f"not loading ckpt :{self.args.dataset_rank}")
         self.runtime_timer.stop()
+
+    
+
 
     def _wrap_model_and_load_sharded_checkpoint(self, resume_from_checkpoint):
         # In the sharded mode, should invoke _load_from_checkpoint after _wrap_model.

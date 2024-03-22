@@ -1,7 +1,7 @@
 {
-    "train_datasets": "PKU-SafeRLHF/train",
-    "eval_datasets": "PKU-SafeRLHF/test",
-    "ptx_datasets": "alpaca",
+    "train_datasets": "local/PKU-SafeRLHF/train",
+    "eval_datasets": "local/PKU-SafeRLHF/test",
+    "ptx_datasets": "local/alpaca",
     "actor_model_name_or_path": "PKU-Alignment/alpaca-7b-reproduced",
     "reward_model_name_or_path": "PKU-Alignment/beaver-7b-v1.0-reward",
     "_actor_model_name_or_path": "facebook/llama-7b",

@@ -27,6 +27,8 @@ __all__ = [
     "SafeRLHFTrainDataset",
     "SafeRLHFTestDataset",
     "SafeRLHF10KTrainDataset",
+    'SafeRLHFLocalTrainDataset',
+    'SafeRLHFLocalTestDataset',
 ]
 
 
@@ -58,6 +60,20 @@ class SafeRLHFTrainDataset(SafeRLHFDataset):
     ALIASES: tuple[str, ...] = ("PKU-Alignment/PKU-SafeRLHF/train",)
     PATH: str = "PKU-Alignment/PKU-SafeRLHF"
     SPLIT: str = "train"
+
+
+class SafeRLHFLocalTrainDataset(SafeRLHFDataset):
+    NAME: str = 'local/PKU-SafeRLHF/train'
+    ALIASES: tuple[str, ...] = ('local-PKU-SafeRLHF/train',)
+    PATH: str = '/root/datasets/PKU-SafeRLHF'
+    SPLIT: str = 'train'
+
+
+class SafeRLHFLocalTestDataset(SafeRLHFDataset):
+    NAME: str = 'local/PKU-SafeRLHF/test'
+    ALIASES: tuple[str, ...] = ('local-PKU-SafeRLHF/test',)
+    PATH: str = '/root/datasets/PKU-SafeRLHF'
+    SPLIT: str = 'test'
 
 
 class SafeRLHFTestDataset(SafeRLHFDataset):
